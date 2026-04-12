@@ -1,0 +1,10 @@
+pandas
+numpy
+psycopg2-binary
+python-dotenv
+sqlalchemy
+jupyter
+matplotlib
+seaborn
+scikit-learn
+xgboost

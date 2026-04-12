@@ -23,6 +23,7 @@ def load_raw():
     for table, filename in FILES.items():
         path = os.path.join("data/raw", filename)
         df = pd.read_csv(path, dtype=str)
+        df.columns = df.columns.str.strip('"')
         df.to_sql(
             name=table,
             con=engine,

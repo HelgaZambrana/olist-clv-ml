@@ -7,7 +7,7 @@ load_dotenv()
 engine = create_engine(os.getenv("DATABASE_URL"))
 
 def create_schema():
-    with open("sql/schema_raw.sql", "r") as f:
+    with open("sql/schema_clean.sql", "r") as f:
         sql = f.read()
     
     with engine.connect() as conn:

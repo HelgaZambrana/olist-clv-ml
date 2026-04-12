@@ -48,8 +48,6 @@ CREATE TABLE IF NOT EXISTS clean.dim_date (
 CREATE TABLE IF NOT EXISTS clean.fact_orders (
     order_id                TEXT PRIMARY KEY,
     customer_id             TEXT REFERENCES clean.dim_customer(customer_id),
-    product_id              TEXT REFERENCES clean.dim_product(product_id),
-    seller_id               TEXT REFERENCES clean.dim_seller(seller_id),
     date_id                 TEXT REFERENCES clean.dim_date(date_id),
     price                   NUMERIC,
     freight_value           NUMERIC,

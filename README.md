@@ -14,9 +14,15 @@ Dataset by Olist.
 Regression problem — predicting customer Lifetime Value (LTV) based on 
 first purchase behavior.
 
-- **Baseline:** Linear Regression
-- **Main model:** XGBoost Regressor  
-- **Metrics:** MAE, RMSE, R²
+**Models compared:**
+- Linear Regression (baseline)
+- Decision Tree Regressor
+- Random Forest Regressor
+- XGBoost Regressor (main model)
+
+**Optimization:** GridSearchCV for hyperparameter tuning
+
+**Metrics:** MAE, RMSE, R²
 
 ## Stack
 

@@ -57,3 +57,14 @@ CREATE TABLE IF NOT EXISTS clean.fact_orders (
     review_score            INTEGER,
     order_status            TEXT
 );
+
+
+CREATE TABLE IF NOT EXISTS clean.features (
+    customer_unique_id          TEXT PRIMARY KEY,
+    days_since_first_purchase   INTEGER,
+    frequency                   INTEGER,
+    monetary                    NUMERIC,
+    max_review_score            INTEGER,
+    avg_review_score            NUMERIC,
+    total_ltv                   NUMERIC
+);

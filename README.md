@@ -5,8 +5,17 @@ using the Brazilian E-Commerce Public Dataset by Olist.
 
 ## Business Questions
 
-- What is the probability that a customer will make a repeat purchase?
-- How much should be invested in acquiring a new customer vs retaining an existing one?
+- What is the expected monetary value of a new customer based on their first purchase?
+- How much should be invested in acquiring a new customer given their profile?
+
+## Model
+
+Regression problem — predicting customer Lifetime Value (LTV) based on 
+first purchase behavior.
+
+- **Baseline:** Linear Regression
+- **Main model:** XGBoost Regressor  
+- **Metrics:** MAE, RMSE, R²
 
 ## Stack
 

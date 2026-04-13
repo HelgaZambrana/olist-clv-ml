@@ -1,7 +1,8 @@
-# Olist CLV-ML: Customer Retention Model
+# Olist CLV-ML: Customer Lifetime Value Prediction
 
-Binary classification model to predict customer repurchase probability 
-using the Brazilian E-Commerce Public Dataset by Olist.
+Regression model to predict the expected monetary value of a customer
+based on first purchase behavior, using the Brazilian E-Commerce Public 
+Dataset by Olist.
 
 ## Business Questions
 

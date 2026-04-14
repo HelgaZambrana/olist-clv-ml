@@ -19,7 +19,7 @@ first_purchase AS (
 
 SELECT
     l.customer_unique_id,
-    ('2018-07-31'::date - fp.first_purchase_date::date) AS days_since_first_purchase,
+    ('2018-10-17'::date - fp.first_purchase_date::date) AS days_since_first_purchase,
     COUNT(o.order_id) AS frequency,
     SUM(o.price) AS monetary,
     MAX(o.review_score) AS max_review_score,

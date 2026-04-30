@@ -28,15 +28,17 @@ first purchase behavior.
 
 - **Python** — ETL and modeling
 - **PostgreSQL / Neon** — cloud database
-- **scikit-learn / XGBoost** — modeling (TBD)
-- **Jupyter Notebooks** — analysis and EDA (pending)
+- **scikit-learn / XGBoost** — modeling
 
 ## Architecture
+
+```
 data/raw/        ← original CSVs (not tracked by git)
-data/clean/      ← processed outputs
+data/clean/      ← processed outputs (not tracked by git)
 src/             ← ETL and modeling scripts
 sql/             ← schema definitions
 notebooks/       ← EDA and model development
+```
 
 Two-layer database architecture:
 - `raw` schema — exact replica of source CSVs, no transformations

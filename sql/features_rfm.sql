@@ -15,6 +15,28 @@ first_purchase AS (
     JOIN clean.dim_customer c ON o.customer_id = c.customer_id
     WHERE o.order_status = 'delivered'
     GROUP BY c.customer_unique_id
+),
+first_order AS (
+    SELECT DISTINCT ON (c.customer_unique_id)
+        c.customer_unique_id,
+        o.order_id,
+        o.payment_type,
+        o.payment_installments
+    FROM clean.fact_orders o
+    JOIN clean.dim_customer c ON o.customer_id = c.customer_id
+    JOIN first_purchase fp ON c.customer_unique_id = fp.customer_unique_id
+    WHERE o.date_id::timestamp = fp.first_purchase_date
+    AND o.order_status = 'delivered'
+    ORDER BY c.customer_unique_id, o.order_id
+),
+top_product AS (
+    SELECT DISTINCT ON (fo.customer_unique_id)
+        fo.customer_unique_id,
+        p.product_category_name_english
+    FROM first_order fo
+    JOIN raw.order_items oi ON fo.order_id = oi.order_id
+    JOIN clean.dim_product p ON oi.product_id = p.product_id
+    ORDER BY fo.customer_unique_id, oi.price::numeric DESC
 )
 
 SELECT
@@ -24,10 +46,21 @@ SELECT
     SUM(o.price) AS monetary,
     MAX(o.review_score) AS max_review_score,
     AVG(o.review_score) AS avg_review_score,
+    fo.payment_type,
+    fo.payment_installments,
+    tp.product_category_name_english,
     l.total_ltv
 FROM clean.fact_orders o
 JOIN clean.dim_customer c ON o.customer_id = c.customer_id
 JOIN ltv l ON c.customer_unique_id = l.customer_unique_id
 JOIN first_purchase fp ON c.customer_unique_id = fp.customer_unique_id
+JOIN first_order fo ON c.customer_unique_id = fo.customer_unique_id
+JOIN top_product tp ON c.customer_unique_id = tp.customer_unique_id
 WHERE o.order_status = 'delivered'
-GROUP BY l.customer_unique_id, fp.first_purchase_date, l.total_ltv
+GROUP BY 
+    l.customer_unique_id, 
+    fp.first_purchase_date, 
+    l.total_ltv,
+    fo.payment_type,
+    fo.payment_installments,
+    tp.product_category_name_english

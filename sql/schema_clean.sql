@@ -60,11 +60,14 @@ CREATE TABLE IF NOT EXISTS clean.fact_orders (
 
 
 CREATE TABLE IF NOT EXISTS clean.features (
-    customer_unique_id          TEXT PRIMARY KEY,
-    days_since_first_purchase   INTEGER,
-    frequency                   INTEGER,
-    monetary                    NUMERIC,
-    max_review_score            INTEGER,
-    avg_review_score            NUMERIC,
-    total_ltv                   NUMERIC
+    customer_unique_id              TEXT PRIMARY KEY,
+    days_since_first_purchase       INTEGER,
+    frequency                       INTEGER,
+    monetary                        NUMERIC,
+    max_review_score                INTEGER,
+    avg_review_score                NUMERIC,
+    payment_type                    TEXT,
+    payment_installments            INTEGER,
+    product_category_name_english   TEXT,
+    total_ltv                       NUMERIC
 );

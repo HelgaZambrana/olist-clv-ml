@@ -63,3 +63,22 @@ Only `city` and `state` are retained in `dim_customer` and `dim_seller`.
 
 In a production environment, this pipeline would be orchestrated with 
 Apache Airflow or dbt, with scheduled runs and automatic retries.
+
+## Features
+
+**Original RFM features:**
+- `days_since_first_purchase` — recency proxy
+- `frequency` — number of orders
+- `log_monetary` — log-transformed total spend (StandardScaler applied)
+- `avg_review_score` — customer satisfaction signal
+
+**Enriched features (first purchase signals):**
+- `product_category_encoded` — category of highest-value product in first purchase (Target Encoding)
+- `payment_installments` — number of installments chosen (StandardScaler applied)
+- `payment_type_*` — payment method one-hot encoded (boleto, credit_card, debit_card, voucher)
+
+**Target variable:** `log_ltv` — log-transformed total customer lifetime value
+
+**Note:** Initial analysis showed 1.0 correlation between `monetary` and `total_ltv` 
+for single-purchase customers (97% of dataset). Enriched features were added to 
+introduce independent behavioral signals from the first purchase beyond raw spend value.

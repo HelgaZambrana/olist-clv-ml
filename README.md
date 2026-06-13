@@ -24,6 +24,24 @@ first purchase behavior.
 
 **Metrics:** MAE, RMSE, R²
 
+## Results
+
+| Model | MAE (log) | RMSE | R² |
+|---|---|---|---|
+| XGBoost Tuned | 0.6122 | 0.7857 | 0.30 |
+| XGBoost Default | 0.6157 | 0.7906 | 0.29 |
+| Linear Regression | 0.6287 | 0.7975 | 0.28 |
+| Random Forest | 0.6661 | 0.8582 | 0.17 |
+| Decision Tree | 0.8583 | 1.1166 | -0.41 |
+
+**Best model:** XGBoost Tuned (n_estimators=300, max_depth=5, learning_rate=0.1)
+
+**Top predictors:** payment_installments (36.5%), frequency (20.0%), payment_type_credit_card (16.7%)
+
+**Note:** `log_monetary` was excluded from features due to perfect correlation with 
+`total_ltv` for single-purchase customers (97% of dataset). The R² of 0.30 reflects 
+genuine behavioral signal from first purchase patterns, not spend amount directly.
+
 ## Stack
 
 - **Python** — ETL and modeling
